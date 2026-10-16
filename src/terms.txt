@@ -1,0 +1,20 @@
+binary
+base-two numbering system using 0s and 1s as digits
+hexadecimal
+base-sixteen numbering system using 0-9 and A-F as digits
+two's complement
+a method of representing negative numbers in binary, in which the weight of the most significant bit becomes negative
+sequence
+executing one instruction after another
+selection
+allows the program to branch and follow different directions depending on the outcome of a condition. uses if statements and switch case
+iteration
+repeating sections of code. uses for loops when count controlled, and either while, do-while or do-until when condition controlled
+variable
+pointer to a memory address with a user-friendly label - can change while program is running
+assignment
+supplying a value to a variable or constant - uses = symbol
+casting
+converting data types
+subroutine
+a block of code given a unique, identifiable name within a program
