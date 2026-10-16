@@ -8,10 +8,11 @@ public class Main {
     public static void main(String[] args) throws Exception{
         int choice = -1;
         while (choice != 0) {
-            System.out.println("Menu");
+            System.out.println("Menu - File Handling\n--------------------\n");
             System.out.println("\t1. Student Data");
             System.out.println("\t2. Shopping List");
             System.out.println("\t3. Lottery");
+            System.out.println("\t4. CS Terms");
             choice = inputInt("Please enter your choice: ");
             switch (choice){
                 case 1:
@@ -23,6 +24,65 @@ public class Main {
                 case 3:
                     lottery();
                     break;
+                case 4:
+                    terms();
+                    break;
+            }
+        }
+    }
+
+    public static void searchByTerm(String[][] array) {
+        String term = inputString("Term ..? ");
+        boolean found = false;
+        for (String[] termAndDefinition : array) {
+            if (termAndDefinition[0].equals(term)) {
+                found = true;
+                System.out.println("FOUND ..." + termAndDefinition[1]);
+            }
+        }
+        if (!found) {
+            System.out.println("TERM NOT FOUND");
+        }
+    }
+
+    public static void searchDescriptionsForKeyword(String[][] array) {
+        String keyword = inputString("Key word ..? ");
+        boolean found = false;
+        for (String[] termAndDefinition : array) {
+            if (termAndDefinition[1].contains(keyword)) {
+                found = true;
+                System.out.println("FOUND for " + termAndDefinition[0]);
+                System.out.println(termAndDefinition[1]);
+            }
+        }
+        if (!found) {
+            System.out.println("NO DESCRIPTIONS FOUND");
+        }
+    }
+
+    public static void terms() throws Exception {
+        int choice = 0;
+        String[][] termsArray = new String[10][2];
+        FileReader fr = new FileReader("terms.txt");
+        BufferedReader file = new BufferedReader(fr);
+        for (int i = 0; i < 10; i++){
+            termsArray[i][0] = file.readLine();
+            termsArray[i][1] = file.readLine();
+        }
+        while (choice != 3) {
+            System.out.println("1. Search for a term");
+            System.out.println("2. Search for a keyword in the descriptions");
+            System.out.println("3. End");
+            choice = inputInt("Key in choice  ");
+            switch (choice) {
+                case 1:
+                    searchByTerm(termsArray);
+                    break;
+                case 2:
+                    searchDescriptionsForKeyword(termsArray);
+                    break;
+                case 3:
+                    System.out.println("Bye!");
             }
         }
     }
