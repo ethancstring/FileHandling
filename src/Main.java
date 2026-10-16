@@ -11,6 +11,7 @@ public class Main {
             System.out.println("Menu");
             System.out.println("\t1. Student Data");
             System.out.println("\t2. Shopping List");
+            System.out.println("\t3. Lottery");
             choice = inputInt("Please enter your choice: ");
             switch (choice){
                 case 1:
@@ -19,8 +20,33 @@ public class Main {
                 case 2:
                     shop();
                     break;
+                case 3:
+                    lottery();
+                    break;
             }
         }
+    }
+
+    public static void lottery() throws Exception {
+        boolean[] lotteryNumbers = new boolean[51];
+        int numberOfSelectedBalls = 0;
+        int winningBall;
+        while (numberOfSelectedBalls != 6) {
+            winningBall = (int) ((Math.random() * 50) + 1);
+            if (!lotteryNumbers[winningBall]) {
+                lotteryNumbers[winningBall] = true;
+                numberOfSelectedBalls++;
+            }
+        }
+        FileWriter fw = new FileWriter("lottery.txt", true);
+        BufferedWriter file = new BufferedWriter(fw);
+        for (int i = 1; i <= 50; i++) {
+            if (lotteryNumbers[i]) {
+                file.write(i + "\t");
+            }
+        }
+        file.newLine();
+        file.close();
     }
 
     public static void shop() throws Exception {
